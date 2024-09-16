@@ -96,6 +96,46 @@ public class Tree {
         }
     }
 
+    public boolean eq(Tree other) {
+        if (this.isEmpty() && other.isEmpty()) {
+            return true;
+        }
 
+        else if (this.isEmpty() || other.isEmpty()) {
+            return false;
+        }
+
+        else {
+            if (this.root.compareTo(other.root) != 0) {
+                return false;
+            }
+
+            if (this.len() != other.len()) {
+                return false;
+            }
+
+            return this.subtrees.equals(other.subtrees);
+        }
+    }
+
+    public boolean contains(int item) {
+        if (this.isEmpty()) {
+            return false;
+        }
+
+        if (this.root.equals(item)) {
+            return true;
+        }
+
+        else {
+            for (Tree t : subtrees) {
+                if (t.contains(item)) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+    }
     // TODO complete this Tree class to replicate the implementation from the Tree class in adts.py
 }
