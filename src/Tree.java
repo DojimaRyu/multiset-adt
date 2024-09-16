@@ -8,8 +8,7 @@ public class Tree {
     public Tree(Integer root) {
         if (root != null) { 
             this.root = root;
-            left = new Tree();
-            right = new Tree();
+            this.subtrees = new ArrayList<>();
         }
 
     }
@@ -61,6 +60,39 @@ public class Tree {
             }
 
             return num;
+        }
+    }
+
+    public String str() {
+        return this.strIndented();
+    }
+
+    public String strIndented() {
+        if (this.isEmpty()) {
+            return "";
+        }
+
+        else {
+            String s = this.root + "\n";
+            for (Tree t : subtrees) {
+                s += t.strIndented(1);
+            }
+            return s;
+        }
+    }
+
+    public String strIndented(int depth) {
+        if (this.isEmpty()) {
+            return "";
+        }
+
+        else {
+            String s = " ".repeat(depth) + this.root + "\n";
+            for (Tree t : subtrees) {
+                depth += 1;
+                s += t.strIndented(depth);
+            }
+            return s;
         }
     }
 
